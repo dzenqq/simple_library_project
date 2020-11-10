@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Страница не найдена</h1>
+
+    <p>
+        Запрашиваемая страница не найдена. <a href="{{ path('app_bookslist_show_books_list') }}">Вернуться к списку книг</a>.
+    </p>
+{% endblock %}

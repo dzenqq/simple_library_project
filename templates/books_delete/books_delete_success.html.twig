@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="col">
+<h1>Книга удалена.</h1>
+</div>
+<div class="col">
+<a href="{{path('app_bookslist_show_books_list')}}">Вернуться к списку книг</a>
+</div>
+{% endblock %}

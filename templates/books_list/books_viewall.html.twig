@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="col">
+<h1>Список книг</h1>
+</div>
+<div class="col p-3">
+<a class="btn btn-primary" href="{{ path('app_bookscreate_create_book')}}">Добавить</a>
+</div>
+{% if(books|length > 0) %}
+<div class="col">
+<table class="table table-bordered">
+<tr>
+<td><b>Имя</b></td>
+<td><b>Год</b></td>
+<td><b>Автор</b></td>
+<td><b>Действие</b></td>
+</tr>
+{% for book in books %}
+<tr>
+<td>{{book.booktitle}}</td>
+<td>{{book.issueyear}}</td>
+<td>{{book.authorname}}</td>
+<td>
+<a href="{{ path('app_booksedit_edit_book', {id: book.id}) }}">Редактировать</a><br />
+<a class="text-danger" href="{{ path('app_booksdelete_delete_book', {id: book.id}) }}">Удалить</a></td>
+</tr>
+{% endfor %}
+
+</table>
+{% if total_pages > 1 %}
+<ul class="pagination">
+    {# `«` arrow  #}
+    <li class="page-item{{ current_page == 1 ? ' disabled' }}">
+        <a class="page-link" href="{{ path('app_bookslist_show_books_list', {page: current_page-1 < 1 ? 1 : current_page-1}) }}">«</a>
+    </li>
+
+    {# Render each page number #}
+    {% for i in 1..total_pages %}
+    <li class="page-item{{ current_page == i ? ' active' }}">
+    <a class="page-link" href="{{ path('app_bookslist_show_books_list', {page: i}) }}">{{ i }}</a>
+    </li>
+    {% endfor %}
+
+    {# `»` arrow #}
+    <li class="page-item{{ current_page == total_pages ? ' disabled' }}"">
+        <a class="page-link" href="{{ path('app_bookslist_show_books_list', {page: current_page+1 <= total_pages ? current_page+1 : current_page}) }}">»</a>
+    </li>
+</ul>
+{% endif %}
+</div>
+{% else %}
+<div class="col">Библиотека пуста.</div>
+{% endif %}
+
+{% endblock %}

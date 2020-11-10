@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="col">
+<h1>Добавить новую книгу</h1>
+</div>
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+<div class="col">
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+{{ form_end(form) }}
+</div>
+<div class="col">
+<a href="{{path('app_bookslist_show_books_list')}}">Вернуться к списку книг</a>
+</div>
+{% endblock %}
